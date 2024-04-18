@@ -1,0 +1,58 @@
+{
+  "name": "@vcmap/search-geocodr",
+  "version": "1.0.3",
+  "description": "A search plugin for Geocodr",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "prepublishOnly": "vcmplugin build",
+    "build": "vcmplugin build",
+    "pack": "vcmplugin pack",
+    "start": "vcmplugin serve",
+    "preview": "vcmplugin preview",
+    "buildStagingApp": "vcmplugin buildStagingApp",
+    "lint:js": "eslint . --ext .vue,.js,.cjs,.mjs,.ts,.cts,.mts",
+    "lint:prettier": "prettier --check .",
+    "lint": "npm run lint:js && npm run lint:prettier",
+    "format": "prettier --write --list-different . && npm run lint:js -- --fix",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "author": "Tim Balschmiter <geodienste@rostock.de>",
+  "license": "MIT",
+  "keywords": [
+    "vcmap",
+    "plugin"
+  ],
+  "files": [
+    "src/",
+    "dist/",
+    "plugin-assets/",
+    "LICENSE.md",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": "./src/index.js",
+    "./dist": "./dist/index.js"
+  },
+  "eslintIgnore": [
+    "node_modules"
+  ],
+  "eslintConfig": {
+    "root": true,
+    "extends": "@vcsuite/eslint-config/vue"
+  },
+  "prettier": "@vcsuite/eslint-config/prettier.js",
+  "peerDependencies": {
+    "@vcmap/core": "^5.0.0",
+    "@vcmap/ui": "^5.0.0",
+    "vue": "~2.7.3",
+    "vuetify": "~2.6.7"
+  },
+  "devDependencies": {
+    "@vcmap/plugin-cli": "^2.1.12",
+    "@vcsuite/eslint-config": "^3.0.5"
+  },
+  "mapVersion": "^5.0.0"
+}
