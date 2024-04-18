@@ -1,9 +1,11 @@
 import { Extent, parseGeoJSON, wgs84Projection } from '@vcmap/core';
 import {
   AddressBalloonFeatureInfoView,
+  BalloonFeatureInfoView,
   featureInfoViewSymbol,
 } from '@vcmap/ui';
 import { name } from '../package.json';
+import SearchHROBalloonComponent from './SearchHROBalloonComponent.vue';
 
 /**
  *
@@ -14,18 +16,21 @@ function createResultItem(item) {
 
   const data = parseGeoJSON(item.geometry);
   const feature = data.features[0];
-  console.log("ITEM:");
-  console.log({'attributes':item.properties});
   
-  feature.setProperties(item.properties);
+  feature.setProperties({'attributes': item.properties});
+  console.log("finale Feature");
   console.log(feature);
   const title = item.properties._title_;
-
-
-  //feature[featureInfoViewSymbol] = new AddressBalloonFeatureInfoView({})
-
-
-  feature[featureInfoViewSymbol] = new AddressBalloonFeatureInfoView({
+  console.log(title);
+ 
+  feature[featureInfoViewSymbol] = new BalloonFeatureInfoView({
+    name: title,
+    balloonTitle: title,
+    balloonSubtitle: title,
+    },
+    SearchHROBalloonComponent,
+  )
+  /*feature[featureInfoViewSymbol] = new AddressBalloonFeatureInfoView({
     type: 'AddressBalloonFeatureInfoView',
     name: 'NominatimSearchBalloon',
     balloonSubtitle: 'objektgruppe',
@@ -35,11 +40,7 @@ function createResultItem(item) {
     city: 'objektgruppe',
     zip: 'objektgruppe',
     country: 'objektgruppe',
-  });
-  
-  console.log("finale Feature");
-  console.log(feature);
- 
+  });*/
   return {
     title,
     feature,
