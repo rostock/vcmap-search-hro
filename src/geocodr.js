@@ -18,29 +18,19 @@ function createResultItem(item) {
   const feature = data.features[0];
   
   feature.setProperties({'attributes': item.properties});
-  console.log("finale Feature");
-  console.log(feature);
+  
   const title = item.properties._title_;
-  console.log(title);
+  const balloonTitle = item.properties.suchklasse;
+  const balloonSubtitle = item.properties.objektgruppe;
  
   feature[featureInfoViewSymbol] = new BalloonFeatureInfoView({
-    name: title,
-    balloonTitle: title,
-    balloonSubtitle: title,
+    name: 'GeocodrInfo',
+    balloonTitle: balloonTitle,
+    balloonSubtitle: balloonSubtitle,
     },
     SearchHROBalloonComponent,
   )
-  /*feature[featureInfoViewSymbol] = new AddressBalloonFeatureInfoView({
-    type: 'AddressBalloonFeatureInfoView',
-    name: 'NominatimSearchBalloon',
-    balloonSubtitle: 'objektgruppe',
-    addressName: 'objektgruppe',
-    street: 'objektgruppe',
-    number: 'objektgruppe',
-    city: 'objektgruppe',
-    zip: 'objektgruppe',
-    country: 'objektgruppe',
-  });*/
+  
   return {
     title,
     feature,
@@ -67,7 +57,6 @@ class Geocodr {
    * @returns {GeocodrSearchOptions}
    */
   static getDefaultOptions() {
-    console.log("defaultOptions");
     return {
       url: 'https://geo.sv.rostock.de/geocodr/query',
       city: undefined,
@@ -86,7 +75,6 @@ class Geocodr {
    * @param {GeocodrSearchOptions} options
    */
   constructor(options) {
-    console.log("constructor");
     /**
      * @type {GeocodrSearchOptions}
      */
@@ -140,7 +128,6 @@ class Geocodr {
    * @readonly
    */
   get name() {
-    console.log("name");
     return this._name;
   }
 
@@ -149,7 +136,6 @@ class Geocodr {
    * @returns {Array<ResultItem>}
    */
   async search(query) {
-    console.log("asyncSearch");
     const params = {
       query,
       countrycodes: this.countrycode,
@@ -179,7 +165,6 @@ class Geocodr {
     }
 
     const url = new URL(this.url);
-    console.log(url);
     url.search = new URLSearchParams(params).toString();
     const { signal } = this._controller.signal;
     const response = await fetch(url, { signal });
@@ -223,4 +208,3 @@ class Geocodr {
 }
 
 export default Geocodr;
-

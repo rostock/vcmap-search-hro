@@ -1,5 +1,5 @@
 {
-  "name": "@vcmap/search-geocodr",
+  "name": "@vcmap/search-hro",
   "version": "1.0.3",
   "description": "A search plugin for Geocodr",
   "type": "module",

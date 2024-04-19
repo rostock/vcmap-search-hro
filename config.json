@@ -1,5 +1,5 @@
 {
-  "name": "search-geocodr",
+  "name": "search-hro",
   "url": "https://geo.sv.rostock.de/geocodr/query",
   "countrycode": "de",
   "limit": 20,

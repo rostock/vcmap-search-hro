@@ -3,15 +3,13 @@
       <template #default="{ attrs }">
         <v-list-item two-line v-if="Object.values(attrs.attributes).length > 0">
           <v-list-item-content>
-            <v-list-item-title>
-                Hallo Welt
-            </v-list-item-title>
+            <span class="pr-1">{{ attrs.attributes.attributes._title_ }} </span>
           </v-list-item-content>
         </v-list-item>
       </template>
     </BalloonComponent>
   </template>
-  <script lang="ts">
+  <script lang="js">
     import {
       VListItem,
       VListItemContent,
@@ -24,7 +22,6 @@
       BalloonComponent,
       VcsFormButton,
       VcsFormattedNumber,
-      VcsUiApp,
     } from '@vcmap/ui';
     import { defineComponent, inject } from 'vue';
  
@@ -46,17 +43,7 @@
         VListItemContent,
         VListItemSubtitle,
       },
-      setup(props, { attrs }) {
-        
-        const app = inject('vcsApp') as VcsUiApp; 
-        console.log("hierhier");    
-        console.log(attrs.attributes);
-        console.log(props);
-        return {
-            
-        }
-
-      },
+      setup(props, { attrs }) { },
     });
   </script>
   <style lang="scss" scoped>
